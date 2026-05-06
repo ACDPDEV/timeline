@@ -13,7 +13,12 @@ import TimeLineGroup from "../components/TimeLineGroup.astro";
         <TimeLineContainer>
             {
                 data.map((group) => (
-                    <TimeLineGroup time={group.time} color={group.color}>
+                    <TimeLineGroup
+                        time={group.time}
+                        color={group.color}
+                        isFirst={group.id === 1}
+                        isLast={group.id === 5}
+                    >
                         {group.acts.map((item) => (
                             <TimeLineItem
                                 title={item.title}
