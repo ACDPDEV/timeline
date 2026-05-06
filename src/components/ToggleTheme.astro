@@ -1,0 +1,23 @@
+---
+import IconTheme from "./icons/IconTheme.astro";
+---
+
+<button id="theme-toggle"> <IconTheme /> </button>
+
+<script>
+    const themes = ["light", "dark"];
+    const root = document.documentElement;
+
+    let current = localStorage.getItem("theme") || "light";
+    root.dataset.theme = current;
+
+    document.getElementById("theme-toggle")!.onclick = () => {
+        const index = themes.indexOf(current);
+        const next = themes[(index + 1) % themes.length];
+
+        root.dataset.theme = next;
+        localStorage.setItem("theme", next);
+
+        current = next;
+    };
+</script>

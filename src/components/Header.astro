@@ -1,0 +1,16 @@
+---
+import ToggleTheme from "./ToggleTheme.astro";
+---
+
+<nav
+    class="relative flex h-fit w-screen justify-center items-center font-serif font-medium text-2xl md:text-5xl px-12 py-4 text-text-header"
+>
+    <h1>
+        <slot />
+    </h1>
+    <div
+        class="absolute right-8 top-50% transform -translate-y-50% text-text-body flex justify-center items-center"
+    >
+        <ToggleTheme />
+    </div>
+</nav>

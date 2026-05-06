@@ -1,0 +1,14 @@
+---
+import IconChevronLeft from "./icons/IconChevronLeft.astro";
+import IconChevronRight from "./icons/IconChevronRight.astro";
+---
+
+<div class="w-full h-full flex flex-row p-16 overflow-auto">
+    <div class="flex h-full justify-end items-center transform translate-y-6">
+        <IconChevronLeft />
+    </div>
+    <slot />
+    <div class="flex h-full justify-end items-center transform translate-y-6">
+        <IconChevronRight />
+    </div>
+</div>

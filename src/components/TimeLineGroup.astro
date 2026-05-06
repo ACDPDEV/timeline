@@ -1,0 +1,21 @@
+---
+interface Props {
+    time: string;
+    color: string;
+}
+const { time, color } = Astro.props as Props;
+---
+
+<div class="grid grid-rows-[auto_1fr]">
+    <div
+        class="relative flex justify-start items-center w-full h-12 py-2 px-4 text-text-header font-bold text-xl"
+        style={{ backgroundColor: color }}
+    >
+        <span class="sticky w-screen flex justify-center left-0 top-0">
+            {time}
+        </span>
+    </div>
+    <div class="flex flex-row">
+        <slot />
+    </div>
+</div>
