@@ -4,7 +4,7 @@ export const data = [
   {
     id: 1,
     time: "Etapa pre-lógica",
-    color: "var(--color-1",
+    color: "var(--color-1)",
     acts: [
       {
         id: 1,
