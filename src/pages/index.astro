@@ -12,12 +12,17 @@ import TimeLineGroup from "../components/TimeLineGroup.astro";
         <Header>Historia de la lógica</Header>
         <TimeLineContainer>
             {
-                data.map((group) => (
+                data.map((group, index) => (
                     <TimeLineGroup
                         time={group.time}
                         color={group.color}
+                        nextColor={
+                            group.id !== data.length
+                                ? data[index + 1].color
+                                : undefined
+                        }
                         isFirst={group.id === 1}
-                        isLast={group.id === 5}
+                        isLast={group.id === data.length}
                     >
                         {group.acts.map((item) => (
                             <TimeLineItem

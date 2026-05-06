@@ -2,17 +2,20 @@
 interface Props {
     time: string;
     color: string;
+    nextColor?: string;
     isFirst?: boolean;
     isLast?: boolean;
 }
-const { time, color, isFirst, isLast } = Astro.props as Props;
+const { time, color, nextColor, isFirst, isLast } = Astro.props as Props;
 ---
 
 <div class="grid grid-rows-[auto_1fr]">
     <div
         class="relative flex justify-start items-center w-full h-12 py-2 px-4 text-text-header font-bold text-xl"
         style={{
-            backgroundColor: color,
+            background: isLast
+                ? `linear-gradient(to right, ${color} 100%);`
+                : `linear-gradient(to right, ${color} 90%, ${nextColor} 100%);`,
             borderTopLeftRadius: isFirst ? "20px" : undefined,
             borderBottomLeftRadius: isFirst ? "20px" : undefined,
             borderTopRightRadius: isLast ? "20px" : undefined,
