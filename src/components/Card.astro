@@ -32,67 +32,84 @@ const uid = `card-${Math.random().toString(36).slice(2, 8)}`;
 <!-- ── Card ── -->
 <article
     id={uid}
-    class="author-card relative mt-6 max-w-3xl w-full rounded-xl border p-8 pt-7 font-[StyreneB,Inter,sans-serif] cursor-pointer transition-shadow hover:shadow-lg card-reveal"
+    class="author-card relative mt-6 max-w-5xl w-full rounded-xl border font-[StyreneB,Inter,sans-serif] cursor-pointer transition-shadow hover:shadow-lg card-reveal flex items-stretch"
     style="border-color: var(--color-card-border); background-color: var(--color-card-bg);"
     role="button"
     tabindex="0"
     aria-haspopup="dialog"
     aria-controls={`${uid}-dialog`}
 >
+    <!-- ── Left: content ── -->
+    <div class="flex-1 p-8 pt-7 relative">
+        {
+            hasAuthors && (
+                <div class="absolute -top-[22px] left-8 flex items-center avatars-reveal">
+                    {avatars.map((src, i) => (
+                        <div
+                            class="h-11 w-11 shrink-0 -mr-2.5 overflow-hidden rounded-full border-[2.5px]"
+                            style={`z-index: ${avatars.length - i}; border-color: var(--color-avatar-ring)`}
+                        >
+                            <img
+                                src={src}
+                                alt={authors[i] ?? ""}
+                                class="h-full w-full object-cover"
+                                width="44"
+                                height="44"
+                            />
+                        </div>
+                    ))}
+                    {fallbacks.map((name, i) => (
+                        <div
+                            class="h-11 w-11 shrink-0 -mr-2.5 flex items-center justify-center rounded-full border-[2.5px] text-base font-medium"
+                            style={`z-index: ${fallbacks.length - i}; border-color: var(--color-avatar-ring); background-color: var(--color-avatar-fallback-bg); color: var(--color-avatar-fallback-text);`}
+                            aria-hidden="true"
+                        >
+                            {name.charAt(0).toUpperCase()}
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+
+        <div class="pt-7">
+            <h2
+                class="mb-2 font-['Copernicus','Tiempos_Headline',Georgia,serif] text-[28px] font-normal leading-[1.2] tracking-[-0.3px] title-reveal"
+                style="color: var(--color-card-title)"
+            >
+                {title}
+            </h2>
+            {
+                hasAuthors && (
+                    <p
+                        class="mb-4 text-[12px] font-medium uppercase leading-[1.4] tracking-[1.5px] meta-reveal"
+                        style="color: var(--color-card-authors)"
+                    >
+                        {authors.join(" · ")}
+                    </p>
+                )
+            }
+            <p
+                class="text-base font-normal leading-[1.55] desc-reveal"
+                style="color: var(--color-card-description)"
+            >
+                {description}
+            </p>
+        </div>
+    </div>
+
+    <!-- ── Right: image 1:1 ── -->
     {
-        hasAuthors && (
-            <div class="absolute -top-[22px] left-8 flex items-center avatars-reveal">
-                {avatars.map((src, i) => (
-                    <div
-                        class="h-11 w-11 shrink-0 -mr-2.5 overflow-hidden rounded-full border-[2.5px]"
-                        style={`z-index: ${avatars.length - i}; border-color: var(--color-avatar-ring)`}
-                    >
-                        <img
-                            src={src}
-                            alt={authors[i] ?? ""}
-                            class="h-full w-full object-cover"
-                            width="44"
-                            height="44"
-                        />
-                    </div>
-                ))}
-                {fallbacks.map((name, i) => (
-                    <div
-                        class="h-11 w-11 shrink-0 -mr-2.5 flex items-center justify-center rounded-full border-[2.5px] text-base font-medium"
-                        style={`z-index: ${fallbacks.length - i}; border-color: var(--color-avatar-ring); background-color: var(--color-avatar-fallback-bg); color: var(--color-avatar-fallback-text);`}
-                        aria-hidden="true"
-                    >
-                        {name.charAt(0).toUpperCase()}
-                    </div>
-                ))}
+        img && (
+            <div class="shrink-0 w-[140px] sm:w-[180px] rounded-r-xl overflow-hidden">
+                <img
+                    src={img}
+                    alt=""
+                    aria-hidden="true"
+                    class="h-full w-full object-cover"
+                />
             </div>
         )
     }
-
-    <div class="pt-7">
-        <h2
-            class="mb-2 font-['Copernicus','Tiempos_Headline',Georgia,serif] text-[28px] font-normal leading-[1.2] tracking-[-0.3px] title-reveal"
-            style="color: var(--color-card-title)"
-        >
-            {title}
-        </h2>
-        {
-            hasAuthors && (
-                <p
-                    class="mb-4 text-[12px] font-medium uppercase leading-[1.4] tracking-[1.5px] meta-reveal"
-                    style="color: var(--color-card-authors)"
-                >
-                    {authors.join(" · ")}
-                </p>
-            )
-        }
-        <p
-            class="text-base font-normal leading-[1.55] desc-reveal"
-            style="color: var(--color-card-description)"
-        >
-            {description}
-        </p>
-    </div>
 </article>
 
 <!-- ── Dialog / Modal ── -->
