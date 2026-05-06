@@ -15,7 +15,7 @@ const { year, onTop, color } = Astro.props as Props;
 ---
 
 <div class="relative grid grid-rows-2 overflow-hidden">
-    <div class="flex w-5xl items-end border-b border-text-body p-6">
+    <div class="flex w-6xl items-end border-b border-text-body p-6">
         {
             onTop ? (
                 <Card
@@ -28,7 +28,7 @@ const { year, onTop, color } = Astro.props as Props;
             ) : null
         }
     </div>
-    <div class="flex w-5xl items-start border-t border-text-body p-6">
+    <div class="flex w-6xl items-start border-t border-text-body p-6">
         {
             onTop ? null : (
                 <Card
